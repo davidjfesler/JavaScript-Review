@@ -8,7 +8,13 @@ plusOneSum([1, 2, 3, 4]); // 14
 
 */
 
-
+var plusOneSum = function(myArr) {
+	var total = 1;
+	for (var i = myArr.length - 1; i >0; i--) {
+		total += (myArr[i] + 1);
+	}
+	return total;
+}
 
 /*
 
@@ -17,9 +23,10 @@ Write a function that accepts a multi dimensional array and returns a flattened 
 flatten([1, 2, [3, [4], 5, 6], 7]) // [1, 2, 3, 4, 5, 6, 7]
 
 */
-
-
-
+var flatten = function(arr) {
+	arr.concat.apply(arr);
+	return arr;
+}
 /*
 
 Given an array [a1, a2, ..., aN, b1, b2, ..., bN, c1, c2, ..., cN] convert it to [a1, b1, c1, a2, b2, c2, ..., aN, bN, cN]

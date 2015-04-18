@@ -1,6 +1,8 @@
 /* Declare and Define the functions here that will make the function calls below work properly */
 
-
+var first = function(myArr, cb) {
+  cb(myArr[0]);
+};
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -11,7 +13,9 @@ first(names, function(firstName){
 
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
-
+var last = function(myArr, cb) {
+  cb(myArr[myArr.length - 1])
+};
 
 
 
@@ -26,6 +30,15 @@ last(names, function(lastName){
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
 //have the contains function return a boolean value for if the name is in the array or not.
+
+var contains = function(str, myArr, cb) {
+  for (var i = 0; i < myArr.length; i++) {
+    if (myArr[i] === str) {
+      return cb(true);
+    }
+  }
+  cb(false);
+};
 
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -42,7 +55,13 @@ contains('Colt', names, function(yes){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+var map = function(myArr, cb) {
+  newArr = [];
+  for (var i = 0; i < myArr.length; i++) {
+    newArr.push(cb(myArr[i]));
+  }
+  return newArr;
+};
 
 
 var numbers = [1,2,3,4,5];
@@ -56,6 +75,16 @@ map(numbers, function(num){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
+var uniq = function(myArr, cb) {
+  for (var i = 0; i < myArr.length; i++) {
+    for (var j = i + 1; j < myArr.length; j++) {
+      if (myArr[i] === myArr[j]) {
+        myArr.splice(j, 1);
+      }
+    }
+  }
+  cb(myArr);
+};
 
 
 
@@ -69,12 +98,16 @@ uniq(names, function(uniqArr){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+var each = function(myArr, cb) {
+  for (var i = 0; i < myArr.length; i++) {
+    cb(myArr[i], i)
+  }
+};
 
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
-  console.log('The item in the ' + indice + 'position is ' + item)
+  console.log('The item in the ' + indice + ' position is ' + item)
 });
 
 
@@ -82,7 +115,13 @@ each(names, function(item, indice){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+var getUserById = function(myArr, keyName, cb) {
+  for (var i = 0; i < myArr.length; i++) {
+    if (myArr[i].id === keyName) {
+      cb(myArr[i]);
+    }
+  }
+};
 
 
 var users = [
@@ -118,6 +157,14 @@ getUserById('16t', users, function(user){
 
 
 //Looks through each value in the list, returning the first one that passes a truth test 
+var find = function(myArr, cb) {
+  for (var i = 0; i < myArr.length; i++) {
+    if (cb(myArr[i])) {
+      return myArr[i];
+    }
+  }
+};
+
 var numbers  = [1, 2, 3, 4, 5, 6];
 find(numbers, function(num){ 
   return num % 2 == 0; //should return 2
